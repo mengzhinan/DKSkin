@@ -1,5 +1,6 @@
 package com.duke.skinlib.skin.core;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -50,10 +51,12 @@ public class SkinManager {
      * @param layoutInflater
      * @param skinChangedListener
      */
-    public void setFactory2(LayoutInflater layoutInflater, ISkinChanged skinChangedListener) {
-        if (layoutInflater == null || skinChangedListener == null) {
+    public void setFactory2AndFirstInit(LayoutInflater layoutInflater, Context context, ISkinChanged skinChangedListener) {
+        if (layoutInflater == null || context == null || skinChangedListener == null) {
             return;
         }
+        //第一次调用时初始化
+        ResourceManager.getInstance().init(context);
         layoutInflater.setFactory2(new SkinInflaterFactory(skinChangedListener));
         /*try {
             Field field = LayoutInflater.class.getDeclaredField("mFactorySet");

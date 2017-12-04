@@ -85,11 +85,6 @@ public class ResourceManager {
             return;
         }
         mSkinApkFullPath = skinApkFullPath;
-        //第一次调用时初始化
-        if (!isInited && listener instanceof Context) {
-            init((Context) listener);
-            listener.onLibInit();
-        }
         try {
             if (listener != null) {
                 listener.onStart();

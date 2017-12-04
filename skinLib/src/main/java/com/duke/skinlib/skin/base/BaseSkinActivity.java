@@ -25,7 +25,7 @@ public class BaseSkinActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //设置LayoutInflater.Factory
-        SkinManager.getInstance().setFactory2(getLayoutInflater(), this);
+        SkinManager.getInstance().setFactory2AndFirstInit(getLayoutInflater(), this, this);
         super.onCreate(savedInstanceState);
         //将此Activity加入到观察者集合中
         SkinManager.getInstance().addListener(this);
@@ -58,11 +58,6 @@ public class BaseSkinActivity extends AppCompatActivity
      */
     /*public void loadSkin(String skinApkFullPath) {
         SkinManager.getInstance().loadSkinPackage(skinApkFullPath, new ISkinLoadingListener() {
-
-            @Override
-            public void onLibInit() {
-                //第一次加载皮肤包时，初始化皮肤框架库
-            }
 
             @Override
             public void onStart() {

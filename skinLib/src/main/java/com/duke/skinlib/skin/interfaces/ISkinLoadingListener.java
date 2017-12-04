@@ -6,7 +6,6 @@ package com.duke.skinlib.skin.interfaces;
  * Description: 皮肤加载过程的回调接口
  */
 public interface ISkinLoadingListener {
-    void onLibInit();
 
     void onStart();
 
