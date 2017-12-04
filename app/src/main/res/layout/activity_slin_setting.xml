@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:skinEnable="true"
+    tools:context="com.duke.dkskin.activities.SkinSettingsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_skin_default"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/common_bg_selector"
+            android:text="默认皮肤，不更换" />
+
+        <Button
+            android:id="@+id/btn_skin1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/common_bg_selector"
+            android:text="皮肤1"
+            app:skinEnable="true" />
+
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/common_img"
+            app:skinEnable="true" />
+
+        <ImageView
+            android:id="@+id/iv_pic2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:skinEnable="true"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" />
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImageTextView">
+        <!--文本-->
+        <attr name="imageText" format="string|reference" />
+        <!--字体大小-->
+        <attr name="imageTextSize" format="dimension|reference" />
+        <!--字体颜色-->
+        <attr name="imageTextColor" format="color|reference" />
+        <!--文本控件背景颜色-->
+        <attr name="imageTextBgColor" format="color|reference" />
+        <!--是否为单行-->
+        <attr name="imageTextSingleLine" format="boolean" />
+        <!--非单行时，文本最大行数-->
+        <attr name="imageTextMaxLine" format="integer" />
+
+        <!--图片资源-->
+        <attr name="imageResId" format="reference" />
+        <!--图片宽度-->
+        <attr name="imageWidth" format="dimension|reference" />
+        <!--图片高度-->
+        <attr name="imageHeight" format="dimension|reference" />
+        <!--图片旋转角度-->
+        <attr name="imageAngle" format="float" />
+
+        <!--图片位置-->
+        <attr name="imagePosition">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+        <!--图片与文本之间的间距-->
+        <attr name="imagePadding" format="dimension|reference" />
+    </declare-styleable>
+</resources>

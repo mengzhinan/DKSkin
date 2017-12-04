@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    app:skinEnable="true"
+    tools:context="com.duke.dkskin.fragments.SkinSettingsFragment">
+
+    <com.duke.dkskin.common.ImageTextView
+        android:id="@+id/ddddd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_text_bg"
+        app:imageResId="@mipmap/common_img"
+        app:imageText="@string/common_text"
+        app:skinEnable="true" />
+
+    <TextView
+        android:id="@+id/test111"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ddddd"
+        android:background="@color/common_text_bg"
+        android:gravity="center"
+        android:text="@string/common_text"
+        app:skinEnable="true" />
+
+</RelativeLayout>
