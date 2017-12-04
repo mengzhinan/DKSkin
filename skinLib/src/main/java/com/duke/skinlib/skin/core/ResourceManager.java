@@ -174,7 +174,7 @@ public class ResourceManager {
         if (resources == null || resourceInfo == null || TextUtils.isEmpty(packageName)) {
             return 0;
         }
-        return resources.getIdentifier(resourceInfo.getResName(), resourceInfo.getResType(), packageName);
+        return resources.getIdentifier(resourceInfo.resName, resourceInfo.resType, packageName);
     }
 
 

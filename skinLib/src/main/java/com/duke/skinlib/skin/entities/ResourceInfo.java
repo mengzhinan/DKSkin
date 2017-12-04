@@ -9,20 +9,12 @@ import android.text.TextUtils;
  * Description:
  */
 public class ResourceInfo {
-    private String resName;//资源名，比喻app_name、buy_btn_text等
-    private String resType;//资源类型，drawable、color、mipmap、string等
+    public String resName;//资源名，比喻app_name、buy_btn_text等
+    public String resType;//资源类型，drawable、color、mipmap、string等
 
     private ResourceInfo(String resName, String resType) {
         this.resName = resName;
         this.resType = resType;
-    }
-
-    public String getResName() {
-        return resName;
-    }
-
-    public String getResType() {
-        return resType;
     }
 
     /**
