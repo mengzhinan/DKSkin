@@ -47,7 +47,7 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
     }
 
     private void copyApk() {
-        String name = "skinResApp-debug.apk";
+        String name = "skinResApp-debug.skin";
         File file = new File("/sdcard/" + name);
         FileUtils.copyAssetsFileTo(this, name, file);
     }

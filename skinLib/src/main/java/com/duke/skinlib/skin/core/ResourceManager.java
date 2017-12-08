@@ -178,12 +178,11 @@ public class ResourceManager {
     /**
      * 根据资源id，获取资源名和类型，构造一个ResourceInfo对象
      */
-    ResourceInfo getResourceInfo(int resId) {
-        ResourceInfo resourceInfo = ResourceInfo.getResourceInfo(mCurrentResources, resId);
-        if (resourceInfo == null) {
-            resourceInfo = ResourceInfo.getResourceInfo(mHostResources, resId);
+    ResourceInfo getHostResourceInfo(int resId) {
+        if (mHostResources == null) {
+            return null;
         }
-        return resourceInfo;
+        return ResourceInfo.getResourceInfo(mHostResources, resId);
     }
 
     /**

@@ -4,8 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.duke.skinlib.skin.interfaces.ISkinViewAgent;
 import com.duke.skinlib.skin.entities.ResourceInfo;
+import com.duke.skinlib.skin.interfaces.ISkinViewAgent;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ public class SkinViewAgentImpl implements ISkinViewAgent {
 
     @Override
     public void setBackground(int resId) {
-        ResourceInfo info = ResourceManager.getInstance().getResourceInfo(resId);
+        ResourceInfo info = ResourceManager.getInstance().getHostResourceInfo(resId);
         mSkinAttrs.put(AttrType.BG, info);
         AttrType.BG.apply(mSkinView, info);
     }
@@ -33,7 +33,7 @@ public class SkinViewAgentImpl implements ISkinViewAgent {
     @Override
     public void setImageResource(int resId) {
         if (mSkinView instanceof ImageView) {
-            ResourceInfo info = ResourceManager.getInstance().getResourceInfo(resId);
+            ResourceInfo info = ResourceManager.getInstance().getHostResourceInfo(resId);
             mSkinAttrs.put(AttrType.SRC, info);
             AttrType.SRC.apply(mSkinView, info);
         }
@@ -42,7 +42,7 @@ public class SkinViewAgentImpl implements ISkinViewAgent {
     @Override
     public void setTextColor(int resId) {
         if (mSkinView instanceof TextView) {
-            ResourceInfo info = ResourceManager.getInstance().getResourceInfo(resId);
+            ResourceInfo info = ResourceManager.getInstance().getHostResourceInfo(resId);
             mSkinAttrs.put(AttrType.COLOR, info);
             AttrType.COLOR.apply(mSkinView, info);
         }
@@ -51,7 +51,7 @@ public class SkinViewAgentImpl implements ISkinViewAgent {
     @Override
     public void setText(int resId) {
         if (mSkinView instanceof TextView) {
-            ResourceInfo info = ResourceManager.getInstance().getResourceInfo(resId);
+            ResourceInfo info = ResourceManager.getInstance().getHostResourceInfo(resId);
             mSkinAttrs.put(AttrType.TEXT, info);
             AttrType.TEXT.apply(mSkinView, info);
         }

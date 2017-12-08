@@ -55,7 +55,7 @@ public class SkinSettingsActivity extends BaseSkinActivity implements View.OnCli
     }
 
     public void load() {
-        SkinManager.getInstance().loadSkinPackage("/sdcard/skinResApp-debug.apk", new ISkinLoadingListener() {
+        SkinManager.getInstance().loadSkinPackage("/sdcard/skinResApp-debug.skin", new ISkinLoadingListener() {
 
             @Override
             public void onStart() {
