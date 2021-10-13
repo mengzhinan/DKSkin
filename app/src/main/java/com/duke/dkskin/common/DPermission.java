@@ -1,4 +1,4 @@
-package com.duke.dkskin;
+package com.duke.dkskin.common;
 
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
@@ -23,13 +23,13 @@ import java.util.Iterator;
  */
 public class DPermission {
 
-    private static final String TAG_FRAGMENT = String.valueOf(com.test.test.DPermission.class.getName().hashCode());
+    private static final String TAG_FRAGMENT = String.valueOf(DPermission.class.getName().hashCode());
 
     private final WeakReference<DFragment> mFragmentWeakReference;
 
     private DCallback mDCallback;
 
-    public com.test.test.DPermission setCallback(DCallback dCallback) {
+    public DPermission setCallback(DCallback dCallback) {
         this.mDCallback = dCallback;
         DFragment fragment = getCurrentFragment();
         if (fragment != null) {
@@ -48,12 +48,12 @@ public class DPermission {
     }
 
 
-    public static com.test.test.DPermission newInstance(@NonNull final FragmentActivity activity) {
-        return new com.test.test.DPermission(activity.getSupportFragmentManager());
+    public static DPermission newInstance(@NonNull final FragmentActivity activity) {
+        return new DPermission(activity.getSupportFragmentManager());
     }
 
-    public static com.test.test.DPermission newInstance(@NonNull final Fragment fragment) {
-        return new com.test.test.DPermission(fragment.getChildFragmentManager());
+    public static DPermission newInstance(@NonNull final Fragment fragment) {
+        return new DPermission(fragment.getChildFragmentManager());
     }
 
     private DPermission(@NonNull final FragmentManager fragmentManager) {

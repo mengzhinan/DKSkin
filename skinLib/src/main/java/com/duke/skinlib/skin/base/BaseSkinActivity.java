@@ -2,7 +2,8 @@ package com.duke.skinlib.skin.base;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.duke.skinlib.skin.core.SkinManager;
 import com.duke.skinlib.skin.interfaces.ISkinChanged;
