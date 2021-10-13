@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 public class ResourceManager {
 
     //host主项目的上下文
-    private Context mContext;
+    private Context mAppContext;
 
     //当前host加载的插件皮肤包apk的资源对象
     private Resources mCurrentResources;
@@ -35,7 +35,7 @@ public class ResourceManager {
     private String mHostPackageName;
 
     //标识是否已经初始化
-    private boolean isInited;
+    private boolean isInit;
 
     //当前加载的皮肤包路径
     String mSkinApkFullPath;
@@ -58,16 +58,16 @@ public class ResourceManager {
      * @param context
      */
     void init(Context context) {
-        if (context == null || isInited) {
+        if (context == null || isInit) {
             return;
         }
         //host的application对象
-        mContext = context.getApplicationContext();
-        mHostResources = mContext.getResources();
-        mHostPackageName = mContext.getPackageName();
+        mAppContext = context.getApplicationContext();
+        mHostResources = mAppContext.getResources();
+        mHostPackageName = mAppContext.getPackageName();
         //暂时使用host的Resources资源对象
         mCurrentResources = mHostResources;
-        isInited = true;
+        isInit = true;
     }
 
     void loadSkinPackage(String skinApkFullPath) {
@@ -89,7 +89,7 @@ public class ResourceManager {
             if (listener != null) {
                 listener.onStart();
             }
-            PackageInfo packageInfo = mContext.getPackageManager().getPackageArchiveInfo(mSkinApkFullPath, 0);
+            PackageInfo packageInfo = mAppContext.getPackageManager().getPackageArchiveInfo(mSkinApkFullPath, 0);
             if (packageInfo == null || TextUtils.isEmpty(packageInfo.packageName)) {
                 if (listener != null) {
                     listener.onFailure("packageName is null");
