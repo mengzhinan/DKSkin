@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DKSkin.iml" filepath="$PROJECT_DIR$/DKSkin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/skinLib/skinLib.iml" filepath="$PROJECT_DIR$/skinLib/skinLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/skinResApp/skinResApp.iml" filepath="$PROJECT_DIR$/skinResApp/skinResApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DKSkin.iml" filepath="$PROJECT_DIR$/.idea/DKSkin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/DKSkin.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/DKSkin.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skinLib/DKSkin.skinLib.iml" filepath="$PROJECT_DIR$/.idea/modules/skinLib/DKSkin.skinLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skinResApp/DKSkin.skinResApp.iml" filepath="$PROJECT_DIR$/.idea/modules/skinResApp/DKSkin.skinResApp.iml" />
     </modules>
   </component>
 </project>
