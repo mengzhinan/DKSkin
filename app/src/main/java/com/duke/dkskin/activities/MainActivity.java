@@ -27,7 +27,6 @@ public class MainActivity extends BaseSkinActivity implements View.OnClickListen
     private MyAdapter adapter;
 
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private int requestCode = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

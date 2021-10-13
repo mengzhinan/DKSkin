@@ -24,7 +24,6 @@ public class SkinSettingsActivity extends BaseSkinActivity implements View.OnCli
     private Button btn_skin1;
     private ImageView iv_pic;
     private ImageView iv_pic2;
-    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class SkinSettingsActivity extends BaseSkinActivity implements View.OnCli
         btn_skin1 = findViewById(R.id.btn_skin1);
         iv_pic = findViewById(R.id.iv_pic);
         iv_pic2 = findViewById(R.id.iv_pic2);
-        linearLayout = findViewById(R.id.line2);
         btn_skin_default.setOnClickListener(this);
         btn_skin1.setOnClickListener(this);
         iv_pic.setOnClickListener(this);
