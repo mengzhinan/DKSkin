@@ -1,8 +1,6 @@
 package com.duke.dkskin.common;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Environment;
 import android.os.StatFs;
 import android.text.TextUtils;
 
@@ -328,86 +326,32 @@ public class FileUtils {
     }
 
     /**
-     * 是否挂载了SD卡和有读写SD卡权限
-     */
-    public static boolean hasExternalStorageAndPermission(Context context) {
-        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)
-                && (context.checkCallingOrSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
-    }
-
-    /**
      * 获取外部或内部缓存目录(无SD卡，则获取内部缓存目录)
      *
      * @return 返回目录文件对象
      */
-    public static File getExOrInternalCacheDir(Context context) {
-        File cacheDir = null;
-        if (hasExternalStorageAndPermission(context)) {
-            // /storage/sdcard0/Android/data/<package name>/cache
-            cacheDir = context.getExternalCacheDir();
-        } else {
-            // /data/data/<package name>/cache
-            cacheDir = context.getCacheDir();
+    public static File createNoMedia(File baseFile) {
+        if (baseFile == null) {
+            return null;
         }
-        if (cacheDir == null) {
-            //data/data/packagename/files/cache/
-            String cacheDirPath = context.getFilesDir().getPath() + context.getPackageName() + "/cache/";
-            cacheDir = new File(cacheDirPath);
-        }
-        if (!cacheDir.exists()) {
+        if (!baseFile.exists()) {
             try {
-                cacheDir.exists();
+                baseFile.mkdirs();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            try {
-                //创建.momedia文件，不被系统扫描到有媒体文件
-                new File(cacheDir, ".nomedia").createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-        return cacheDir;
-    }
 
-    /**
-     * 获取SD卡跟目录
-     */
-    public static File getExternalStorageDirectory(Context context) {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            return getExternalStorageDirectory(context, null);
+        File noMediaFile = null;
+        try {
+            //创建.momedia文件，不被系统扫描到有媒体文件
+            noMediaFile = new File(baseFile, ".nomedia");
+            noMediaFile.createNewFile();
+            return noMediaFile;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
-    }
-
-    /**
-     * 获取SD卡指定目录
-     *
-     * @param dir 目录名
-     */
-    public static File getExternalStorageDirectory(Context context, String dir) {
-        File externalFile = null;
-        if (hasExternalStorageAndPermission(context)) {
-            if (!TextUtils.isEmpty(dir)) {
-                if (!dir.equals(Environment.DIRECTORY_ALARMS)
-                        || !dir.equals(Environment.DIRECTORY_DCIM)
-                        || !dir.equals(Environment.DIRECTORY_DOCUMENTS)
-                        || !dir.equals(Environment.DIRECTORY_DOWNLOADS)
-                        || !dir.equals(Environment.DIRECTORY_MOVIES)
-                        || !dir.equals(Environment.DIRECTORY_MUSIC)
-                        || !dir.equals(Environment.DIRECTORY_NOTIFICATIONS)
-                        || !dir.equals(Environment.DIRECTORY_PICTURES)
-                        || !dir.equals(Environment.DIRECTORY_PODCASTS)
-                        || !dir.equals(Environment.DIRECTORY_RINGTONES)) {
-                    externalFile = Environment.getExternalStorageDirectory();
-                } else {
-                    externalFile = Environment.getExternalStoragePublicDirectory(dir);
-                }
-            } else {
-                externalFile = Environment.getExternalStorageDirectory();
-            }
-        }
-        return externalFile;
     }
 
     /*
