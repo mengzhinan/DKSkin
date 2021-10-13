@@ -8,16 +8,15 @@ import android.text.TextUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
 /**
- * @Author: duke
- * @DateTime: 2017-05-25 10:31
- * @Description: 手机内部、外部存储空间操作 version 2.0 <br/>
+ * Author: duke
+ * DateTime: 2017-05-25 10:31
+ * Description: 手机内部、外部存储空间操作 version 2.0 <br/>
  * <p>
  * 1、context.getPackageCodePath():/data/app/your_app.apk
  * 2、context.getPackageResourcePath():/data/app/your_app.apk
@@ -68,9 +67,6 @@ public class FileUtils {
 
     /**
      * 检查和创建文件
-     *
-     * @param file
-     * @return
      */
     public static boolean checkAndCreateFile(File file) {
         if (file == null) {
@@ -107,7 +103,6 @@ public class FileUtils {
      * 删除指定路径下的所有文件
      *
      * @param deleteFile parent文件对象
-     * @return 是否全部删除成功
      */
     public static void deleteFiles(File deleteFile) {
         if (deleteFile == null || !deleteFile.exists()) {
@@ -122,8 +117,8 @@ public class FileUtils {
         } else {
             File[] files = deleteFile.listFiles();
             int size = files.length;
-            for (int i = 0; i < size; i++) {
-                deleteFiles(files[i]);
+            for (File file : files) {
+                deleteFiles(file);
             }
             try {
                 //delete this empty directory
@@ -157,8 +152,8 @@ public class FileUtils {
         } else {
             File[] files = file.listFiles();
             int size = files.length;
-            for (int i = 0; i < size; i++) {
-                countFile(files[i], totalArr);
+            for (File value : files) {
+                countFile(value, totalArr);
             }
         }
     }
@@ -202,8 +197,6 @@ public class FileUtils {
                 outputStream.flush();
             }
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -254,7 +247,7 @@ public class FileUtils {
             fos.write(data);
             fos.flush();
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (fos != null) {
@@ -323,14 +316,11 @@ public class FileUtils {
 
     /**
      * 获取文件路径空间大小
-     *
-     * @param path
-     * @return
      */
     private static long getUsableSpace(File path) {
         try {
             final StatFs stats = new StatFs(path.getPath());
-            return (long) stats.getBlockSize() * (long) stats.getAvailableBlocks();
+            return stats.getBlockSizeLong() * stats.getAvailableBlocksLong();
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -348,7 +338,6 @@ public class FileUtils {
     /**
      * 获取外部或内部缓存目录(无SD卡，则获取内部缓存目录)
      *
-     * @param context
      * @return 返回目录文件对象
      */
     public static File getExOrInternalCacheDir(Context context) {
@@ -383,9 +372,6 @@ public class FileUtils {
 
     /**
      * 获取SD卡跟目录
-     *
-     * @param context
-     * @return
      */
     public static File getExternalStorageDirectory(Context context) {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -397,9 +383,7 @@ public class FileUtils {
     /**
      * 获取SD卡指定目录
      *
-     * @param context
-     * @param dir     目录名
-     * @return
+     * @param dir 目录名
      */
     public static File getExternalStorageDirectory(Context context, String dir) {
         File externalFile = null;
@@ -426,7 +410,7 @@ public class FileUtils {
         return externalFile;
     }
 
-    /**
+    /*
      * ==分割线=============分割线============分割线========================分割线====================分割线==================分割线=============
      * 以下方法操作的都是/data/data/<package name>/路径下的目录或文件
      * ==分割线=============分割线============分割线========================分割线====================分割线==================分割线=============
@@ -436,7 +420,6 @@ public class FileUtils {
      * 保存在/data/data/<package name>/files/目录中 <br/>
      * 内部文件不存在时，系统会自动创建 <br/>
      *
-     * @param context
      * @param fileName 文件名，不能包含目录
      * @param text     需要写入的内容
      */
@@ -449,9 +432,7 @@ public class FileUtils {
             output = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             output.write(text.getBytes());
             output.flush();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (output != null) {
@@ -467,7 +448,6 @@ public class FileUtils {
     /**
      * 读取内部文件内容
      *
-     * @param context
      * @param fileName 文件名，不包含目录
      * @return 文件内容
      */
@@ -482,9 +462,7 @@ public class FileUtils {
             while ((len = input.read(buffer)) != -1) {
                 stringBuilder.append(new String(buffer, 0, len, Charset.defaultCharset()));
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (input != null) {
@@ -501,7 +479,6 @@ public class FileUtils {
     /**
      * 读取内部文件列表
      *
-     * @param context
      * @return 文件名字符串数组
      */
     public static String[] fileListInternal(Context context) {
@@ -511,9 +488,8 @@ public class FileUtils {
     /**
      * 删除内部文件
      *
-     * @param context
      * @param fileName 文件名，不包含目录
-     * @return
+     * @return 是否删除成功
      */
     public static boolean deleteInternalFile(Context context, String fileName) {
         return context.deleteFile(fileName);
@@ -522,9 +498,8 @@ public class FileUtils {
     /**
      * 删除内部数据库
      *
-     * @param context
      * @param databaseName 数据库名
-     * @return
+     * @return 是否删除成功
      */
     public static boolean deleteInternalDatabase(Context context, String databaseName) {
         return context.deleteDatabase(databaseName);
@@ -532,10 +507,6 @@ public class FileUtils {
 
     /**
      * 获取内部数据库文件对象
-     *
-     * @param context
-     * @param databaseName
-     * @return
      */
     public static File getDatabasePath(Context context, String databaseName) {
         return context.getDatabasePath(databaseName);
@@ -543,10 +514,6 @@ public class FileUtils {
 
     /**
      * 创建一个目录，需要传入目录名称，它返回 一个内部文件对象用到操作路径
-     *
-     * @param context
-     * @param dirName
-     * @return
      */
     public static File createInternalDirectory(Context context, String dirName) {
         return context.getDir(dirName, Context.MODE_PRIVATE);
@@ -554,10 +521,6 @@ public class FileUtils {
 
     /**
      * 查看指定内部文件
-     *
-     * @param context
-     * @param fileName
-     * @return
      */
     public static File findInternalFile(Context context, String fileName) {
         return context.getFileStreamPath(fileName);
@@ -565,9 +528,6 @@ public class FileUtils {
 
     /**
      * 获取内部缓存目录
-     *
-     * @param context
-     * @return
      */
     public static File getInternalCacheDir(Context context) {
         return context.getCacheDir();
@@ -576,10 +536,8 @@ public class FileUtils {
     /**
      * 赋值assets下的文件到其他位置
      *
-     * @param context
      * @param assetFileNameAndSuffix assets下的文件名(包含后缀)
      * @param saveFile               目标文件位置
-     * @return
      */
     public static boolean copyAssetsFileTo(Context context, String assetFileNameAndSuffix, File saveFile) {
         if (context == null
