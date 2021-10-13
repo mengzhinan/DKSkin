@@ -17,6 +17,8 @@ import com.duke.skinlib.skin.core.SkinManager;
 import com.duke.skinlib.skin.interfaces.ISkinLoadingListener;
 import com.duke.skinlib.skin.interfaces.ISkinViewAgent;
 
+import java.io.File;
+
 public class SkinSettingsActivity extends BaseSkinActivity implements View.OnClickListener {
     private Button btn_skin_default;
     private Button btn_skin1;
@@ -56,7 +58,7 @@ public class SkinSettingsActivity extends BaseSkinActivity implements View.OnCli
     }
 
     public void load() {
-        SkinManager.getInstance().loadSkinPackage("/sdcard/skinResApp-debug.skin", new ISkinLoadingListener() {
+        SkinManager.getInstance().loadSkinPackage(getExternalFilesDir(null) + File.separator + "skinResApp-debug.skin", new ISkinLoadingListener() {
 
             @Override
             public void onStart() {
